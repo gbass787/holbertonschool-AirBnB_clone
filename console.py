@@ -23,8 +23,7 @@ class HBNBCommand(cmd.Cmd):
     HBNB console
     """
 
-	_classes = 
-{
+	_classes =  {
 	"BaseModel": BaseModel,
 	"User": User,
 	"Place": Place,
