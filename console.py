@@ -86,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
                             for key, value in rep.items():
                                 new.update({key: value.to_dict()})
                             json_file.write(json.dumps(new))
-			break
+                        break
                     except KeyError:
                         pass
 
