@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
                         match = True
                         del rep[obj_id]
                         new = {}
-	with open("file.json", 'w', encoding="utf-8") as json_file:
+    with open("file.json", 'w', encoding="utf-8") as json_file:
                             for key, value in rep.items():
                                 new.update({key: value.to_dict()})
                             json_file.write(json.dumps(new))
