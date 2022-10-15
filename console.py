@@ -10,13 +10,14 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
-from models.__init__ import storage
+from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     """ defines command interpreter class """
     prompt = '(hbnb) '
 
-    _class = {
+    __list_class = {
         "BaseModel": BaseModel(),
         "User": User(),
         "State": State(),
@@ -28,30 +29,30 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         'Creates new instance and saves it to JSON file\n'
-        arg = args.split()
-        if not arg:
+        arg_list = args.split()
+        if not arg_list:
             print("** class name missing **")
-        elif arg[0] not in HBNBCommand._class:
+        elif arg_list[0] not in HBNBCommand.__list_class:
             print("** class doesn't exist **")
         else:
-            new = self._class[args]
+            new = self.__list_class[args]
             new.save()
             print(new.id)
 
     def do_show(self, args):
         'Prints a string representation of an instance, based on name and id\n'
         all_objs = storage.all()
-        arg = args.split()
-        if not arg:
+        arg_list = args.split()
+        if not arg_list:
             print("** class name is missing **")
-        elif arg[0] not in HBNBCommand._class:
+        elif arg_list[0] not in HBNBCommand.__list_class:
             print("** class doesn't exist **")
-        elif len(arg) == 1:
+        elif len(arg_list) == 1:
             print("** instance id missing **")
         else:
             match = False
             for obj_id in all_objs.keys():
-                if arg[1] == all_objs[obj_id].id:
+                if arg_list[1] == all_objs[obj_id].id:
                     print(all_objs[obj_id])
                     match = True
             if match is not True:
@@ -71,49 +72,49 @@ class HBNBCommand(cmd.Cmd):
         else:
             rep_list = []
             for obj_id in all_objs.keys():
-                if arg[0] == all_objs[obj_id].__class__.__name__:
+                if arg_list[0] == all_objs[obj_id].__class__.__name__:
                     rep_list.append(all_objs[obj_id].__str__())
             print(rep_list)
 
     def do_update(self, args):
         'Updates an instance\n'
-        arg = args.split()
+        arg_list = args.split()
         all_objs = storage.all()
-        if len(arg) == 0:
+        if len(arg_list) == 0:
             print("** class name missing **")
-        elif arg[0] not in HBNBCommand._class:
+        elif arg_list[0] not in HBNBCommand.__list_class:
             print("** class doesn't exist **")
-        elif len(arg) == 1:
+        elif len(arg_list) == 1:
             print("** instance id missing **")
         else:
             match = False
             for obj_id in all_objs.keys():
-                if arg[1] == all_objs[obj_id].id:
+                if arg_list[1] == all_objs[obj_id].id:
                     match = all_objs[obj_id]
             if match is False:
                 print("** no instance found **")
             else:
-                if len(arg) == 2:
+                if len(arg_list) == 2:
                     print("** attribute name is missing **")
-                elif len(arg) == 3:
+                elif len(arg_list) == 3:
                     print("** value is missing **")
                 else:
-                    setattr(match, arg[2], arg[3])
+                    setattr(match, arg_list[2], arg_list[3])
 
     def do_destroy(self, args):
         'Deletes an instance based on class name and id\n'
         all_objs = storage.all()
         arg_list = args.split()
-        if not arg:
+        if not arg_list:
             print("** class name missing **")
-        elif arg[0] not in HBNBCommand._class:
+        elif arg_list[0] not in HBNBCommand.__list_class:
             print("** class doesn't exist **")
-        elif len(arg) == 1:
+        elif len(arg_list) == 1:
             print("** instance id missing **")
         else:
             match = False
             for obj_id in all_objs:
-                if arg[1] == all_objs[obj_id].id:
+                if arg_list[1] == all_objs[obj_id].id:
                     try:
                         match = True
                         del all_objs[obj_id]
