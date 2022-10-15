@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
                 if len(arg_list) == 2:
                     print("** attribute name is missing **")
                 elif len(arg_list) == 3:
-                    print("** value is missing **")
+                    print("** value  missing **")
                 else:
                     setattr(match, arg_list[2], arg_list[3])
 
