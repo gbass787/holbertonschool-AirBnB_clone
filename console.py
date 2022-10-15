@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
         all_objs = storage.all()
         arg_list = args.split()
         if not arg_list:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif arg_list[0] not in HBNBCommand.__list_class:
             print("** class doesn't exist **")
         elif len(arg_list) == 1:
@@ -95,9 +95,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 if len(arg_list) == 2:
-                    print("** attribute name is missing **")
+                    print("** attribute name missing **")
                 elif len(arg_list) == 3:
-                    print("** value  missing **")
+                    print("** value missing **")
                 else:
                     setattr(match, arg_list[2], arg_list[3])
 
