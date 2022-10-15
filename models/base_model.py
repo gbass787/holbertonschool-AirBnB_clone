@@ -38,6 +38,5 @@ class BaseModel:
 
     def save(self):
         '''Saves object to JSON file'''
-        self.updated_at = datetime.utcnow()
-        models.storage.new(self)
+        self.updated_at = datetime.now()
         models.storage.save()
