@@ -10,7 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
-
+from models.__init__ import storage
 
 class HBNBCommand(cmd.Cmd):
     """ defines command interpreter class """
